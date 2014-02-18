@@ -1,0 +1,4 @@
+[submodule "lib/cinch"]
+	path = lib/cinch
+	url = git@github.com:amlweems/cinch.git
+	branch = twitch
