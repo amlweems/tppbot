@@ -7,8 +7,7 @@ I initially created this to combat the waves of start spam in the chat, but quic
 
 To use this script, you'll need to use my modified version of cinch (Twitch doesn't fully support the IRC spec, which gives cinch some difficulties).
 
-Setup & Usage
-=============
+## Setup & Usage ##
 ```
 git clone https://github.com/amlweems/tppbot
 git clone https://github.com/amlweems/cinch
