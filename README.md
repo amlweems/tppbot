@@ -15,5 +15,5 @@ git submodule init
 
 # edit commands.txt and users.txt
 
-ruby -I../cinch/lib tppbot.rb
+ruby -Ilib/cinch/lib tppbot.rb
 ```
