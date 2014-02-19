@@ -1,5 +1,2 @@
-sequence
-start
-b
-b
-b
+sequence 0.4
+anarchy
