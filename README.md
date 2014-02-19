@@ -10,10 +10,10 @@ To use this script, you'll need to use my modified version of cinch (Twitch does
 ## Setup & Usage ##
 ```
 git clone https://github.com/amlweems/tppbot
-git clone https://github.com/amlweems/cinch
-
 cd tppbot
+git submodule init
+
 # edit commands.txt and users.txt
 
-ruby -I../cinch/lib tppbot.rb
+ruby -Ilib/cinch/lib tppbot.rb
 ```
