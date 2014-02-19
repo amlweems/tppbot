@@ -35,8 +35,9 @@ end
 threads = []
 users = File.new('users.txt')
 
-users.read.split.each do |line|
+users.read.split("\n").each do |line|
   user, oauth = line.split("::")
+  user.strip!
   bot = Cinch::Bot.new do
     configure do |c|
       c.server = "199.9.252.26" # Twitch IRC IP
