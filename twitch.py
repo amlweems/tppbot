@@ -11,16 +11,14 @@ import re
 
 faker = Factory.create()
 
-class PhraseException(Exception):
-    pass
-
-class FastException(Exception):
-    pass
+class BlockedException(Exception): pass
+class PhraseException(Exception): pass
+class FastException(Exception): pass
 
 def generate_data():
-    username = "###" + re.sub("\W", "#", faker.user_name())
+    username = re.sub("\W", "#", faker.user_name()) + "####"
     username = faker.numerify(username)
-    password = username.encode('rot-13')
+    password = username[::-1]
     data = {
         "utf8":                       u"✓",
         "authenticity_token":         "",
@@ -43,6 +41,10 @@ def register(challenge, response):
     url = "http://www.twitch.tv/signup"
     session = requests.session()
     resp = session.get(url)
+
+    if "blacklist_message" in resp.content:
+        raise BlockedException("Twitch has issued an IP ban")
+    
     token = re.findall('name="authenticity_token" type="hidden" value="([^"]+)"', resp.content)[0]
     
     data = generate_data()
@@ -120,6 +122,9 @@ def main():
         try:
             register(*line.split("::"))
             time.sleep(45*5)
+        except BlockedException as err:
+            print(err)
+            break
         except FastException as err:
             print(err)
             time.sleep(random.randint(60,120))
